@@ -1,264 +1,40 @@
-[2022-02-26 04:03:55,675: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 04:03:55,683: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 04:04:03,057: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 04:04:03,864: INFO: preprocessing] Started Column Dropping
-[2022-02-26 04:04:06,092: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 04:04:06,096: INFO: preprocessing] Started encoding features
-[2022-02-26 04:04:30,926: INFO: preprocessing] Started Column Dropping
-[2022-02-26 04:04:32,381: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 04:04:32,394: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 04:04:34,137: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 04:04:34,162: INFO: preprocessing] Starting train test split of data
-[2022-02-26 04:04:42,447: INFO: preprocessing] starting upsampling of data
-[2022-02-26 04:05:04,893: INFO: clustering] Finding Optimal cluster number
-[2022-02-26 04:05:38,678: INFO: clustering] Finished creating Cluster 1
-[2022-02-26 04:07:19,193: INFO: clustering] Finished creating Cluster 2
-[2022-02-26 04:10:52,353: INFO: clustering] Finished creating Cluster 3
-[2022-02-26 04:17:36,491: INFO: clustering] Finished creating Cluster 4
-[2022-02-26 04:19:45,696: INFO: clustering] Finished creating Cluster 5
-[2022-02-26 04:22:32,164: INFO: clustering] Finished creating Cluster 6
-[2022-02-26 04:25:37,588: INFO: clustering] Finished creating Cluster 7
-[2022-02-26 04:28:27,673: INFO: clustering] Finished creating Cluster 8
-[2022-02-26 04:31:36,980: INFO: clustering] Finished creating Cluster 9
-[2022-02-26 04:35:37,041: INFO: clustering] Finished creating Cluster 10
-[2022-02-26 04:35:37,837: INFO: clustering] Started Tagging of the clusters to dataframe
-[2022-02-26 04:37:08,367: INFO: clustering] Generate elbow graph for pre-defined clusters
-[2022-02-26 04:37:17,030: INFO: clustering] Predicting cluster for test data
-[2022-02-26 04:37:22,781: INFO: models] Started Training RandomForest Model on Cluster 0
-[2022-02-26 09:13:38,618: INFO: models] Finished Training RandomForest Model on Cluster 0
-[2022-02-26 09:14:29,009: INFO: models] Started Training XGboost Model on Cluster 0
-[2022-02-26 09:36:01,439: INFO: models] Finished Training XGboost Model on Cluster 0
-[2022-02-26 09:37:35,822: INFO: models] Started Training RandomForest Model on Cluster 1
-[2022-02-26 14:46:57,097: INFO: models] Finished Training RandomForest Model on Cluster 1
-[2022-02-26 14:48:13,079: INFO: models] Started Training XGboost Model on Cluster 1
-[2022-02-26 15:13:38,644: INFO: models] Finished Training XGboost Model on Cluster 1
-[2022-02-26 15:14:13,073: INFO: models] Started Training RandomForest Model on Cluster 2
-[2022-02-26 16:32:24,414: INFO: models] Finished Training RandomForest Model on Cluster 2
-[2022-02-26 16:32:47,364: INFO: models] Started Training XGboost Model on Cluster 2
-[2022-02-26 16:42:47,829: INFO: models] Finished Training XGboost Model on Cluster 2
-[2022-02-26 16:42:49,121: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 16:42:49,122: ERROR: bestmodel] Saving of best Models for cluster was unsuccessful[Errno 2] No such file or directory: 'kmeans_model.pkl'
-[2022-02-26 21:15:04,402: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:15:04,592: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:15:12,122: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:15:13,055: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:15:13,945: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:15:13,946: INFO: preprocessing] Started encoding features
-[2022-02-26 21:15:30,523: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:15:31,965: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:15:31,965: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:15:33,971: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:15:33,999: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:15:38,983: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:16:08,727: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:16:10,215: ERROR: bestmodel] Saving of best Models for cluster was unsuccessfula bytes-like object is required, not '_io.TextIOWrapper'
-[2022-02-26 21:17:32,856: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:17:32,857: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:17:40,767: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:17:41,571: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:17:42,371: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:17:42,371: INFO: preprocessing] Started encoding features
-[2022-02-26 21:17:58,361: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:17:59,600: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:17:59,600: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:18:00,902: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:18:00,926: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:18:05,429: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:18:19,619: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:18:19,621: ERROR: bestmodel] Saving of best Models for cluster was unsuccessfula bytes-like object is required, not '_io.BufferedReader'
-[2022-02-26 21:19:30,040: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:19:30,041: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:19:37,661: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:19:38,561: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:19:39,381: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:19:39,381: INFO: preprocessing] Started encoding features
-[2022-02-26 21:19:55,311: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:19:56,585: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:19:56,586: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:19:57,883: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:19:57,907: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:20:02,371: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:26:42,211: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:26:42,212: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:26:50,342: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:26:51,185: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:26:52,036: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:26:52,036: INFO: preprocessing] Started encoding features
-[2022-02-26 21:27:08,555: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:27:09,716: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:27:09,716: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:27:10,892: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:27:10,913: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:27:15,356: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:27:31,475: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:28:28,868: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:28:28,868: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:28:36,684: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:28:37,497: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:28:38,344: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:28:38,344: INFO: preprocessing] Started encoding features
-[2022-02-26 21:28:54,811: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:28:55,986: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:28:55,986: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:28:57,212: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:28:57,239: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:29:01,519: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:29:22,068: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:31:13,136: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:31:13,137: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:31:20,653: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:31:21,496: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:31:22,371: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:31:22,372: INFO: preprocessing] Started encoding features
-[2022-02-26 21:31:38,842: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:31:40,027: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:31:40,027: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:31:41,393: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:31:41,422: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:31:46,180: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:32:20,044: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:32:20,044: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:32:27,927: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:32:28,734: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:32:29,581: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:32:29,581: INFO: preprocessing] Started encoding features
-[2022-02-26 21:32:46,001: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:32:47,155: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:32:47,155: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:32:48,347: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:32:48,371: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:32:52,393: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:33:06,879: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:34:23,427: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:34:23,427: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:34:30,764: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:34:31,514: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:34:32,324: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:34:32,324: INFO: preprocessing] Started encoding features
-[2022-02-26 21:34:47,433: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:34:48,602: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:34:48,602: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:34:49,735: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:34:49,759: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:34:53,828: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:35:50,282: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:35:50,282: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:35:57,686: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:35:58,627: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:35:59,447: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:35:59,447: INFO: preprocessing] Started encoding features
-[2022-02-26 21:36:16,322: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:36:17,561: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:36:17,561: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:36:18,948: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:36:18,973: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:36:23,351: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:36:34,628: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:37:23,224: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:37:23,225: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:37:30,820: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:37:31,646: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:37:32,418: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:37:32,418: INFO: preprocessing] Started encoding features
-[2022-02-26 21:37:49,282: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:37:50,474: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:37:50,474: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:37:51,694: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:37:51,724: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:37:55,890: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:38:06,713: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:38:58,887: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:38:58,887: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:39:07,124: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:39:07,844: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:39:08,675: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:39:08,676: INFO: preprocessing] Started encoding features
-[2022-02-26 21:39:24,313: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:39:25,452: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:39:25,452: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:39:26,645: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:39:26,670: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:39:30,823: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:39:41,444: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:40:41,289: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:40:41,289: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:40:48,888: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:40:49,726: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:40:50,476: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:40:50,476: INFO: preprocessing] Started encoding features
-[2022-02-26 21:41:06,817: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:41:07,918: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:41:07,918: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:41:09,134: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:41:09,159: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:41:13,205: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:41:27,868: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:42:11,614: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:42:11,615: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:42:18,985: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:42:19,696: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:42:20,500: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:42:20,501: INFO: preprocessing] Started encoding features
-[2022-02-26 21:42:36,066: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:42:37,232: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:42:37,233: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:42:38,483: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:42:38,512: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:42:42,553: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:42:54,430: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:44:06,065: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:44:06,065: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:44:13,332: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:44:14,183: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:44:14,993: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:44:14,993: INFO: preprocessing] Started encoding features
-[2022-02-26 21:44:30,180: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:44:31,370: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:44:31,370: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:44:32,604: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:44:32,633: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:44:36,729: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:44:47,742: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:45:58,425: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:45:58,425: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:46:06,040: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:46:06,821: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:46:07,653: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:46:07,653: INFO: preprocessing] Started encoding features
-[2022-02-26 21:46:22,843: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:46:24,030: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:46:24,030: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:46:25,263: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:46:25,292: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:46:29,429: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:46:41,329: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:50:02,178: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:50:02,178: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:50:09,743: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:50:10,446: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:50:11,245: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:50:11,245: INFO: preprocessing] Started encoding features
-[2022-02-26 21:50:27,429: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:50:28,615: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:50:28,615: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:50:29,791: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:50:29,816: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:50:33,966: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:50:44,140: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 21:52:03,646: INFO: data_loader_training] DataFrame Stored for training data
-[2022-02-26 21:52:03,648: INFO: generateFeatures] Date Features Creation Started
-[2022-02-26 21:52:11,096: INFO: generateFeatures] Diff Features Creation Started
-[2022-02-26 21:52:12,030: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:52:12,800: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:52:12,800: INFO: preprocessing] Started encoding features
-[2022-02-26 21:52:28,522: INFO: preprocessing] Started Column Dropping
-[2022-02-26 21:52:29,704: INFO: preprocessing] Succesfully dropped columns
-[2022-02-26 21:52:29,704: INFO: preprocessing] Started Scaling of Numeric Columns
-[2022-02-26 21:52:30,968: INFO: preprocessing] Finished Scaling of Numeric Columns
-[2022-02-26 21:52:30,998: INFO: preprocessing] Starting train test split of data
-[2022-02-26 21:52:35,380: INFO: preprocessing] starting upsampling of data
-[2022-02-26 21:52:49,168: INFO: bestmodel] started storing best models for each clusters
-[2022-02-26 22:02:02,258: ERROR: TrainingDataValidation] There is error while validation column datatypeslocal variable 'col_dict' referenced before assignment
-[2022-02-26 22:03:52,233: ERROR: TrainingDataValidation] There is error while validation column datatypeslocal variable 'col_dict' referenced before assignment
-[2022-02-26 22:06:16,030: ERROR: TrainingDataValidation] There is error while validation column datatypesname 'df' is not defined
-[2022-02-26 22:07:15,917: ERROR: TrainingDataValidation] There is error while validation column datatypesname 'df' is not defined
+[2022-03-29 02:43:40,455: INFO: data_loader_training] Started validating the file
+[2022-03-29 02:43:57,760: INFO: data_loader_training] Getting data from the file
+[2022-03-29 02:43:57,760: INFO: TrainingDataValidation] getting column names to store in dataframe
+[2022-03-29 02:44:06,247: INFO: generateFeatures] Date Features Creation Started
+[2022-03-29 02:44:13,839: INFO: generateFeatures] Diff Features Creation Started
+[2022-03-29 02:44:14,524: INFO: preprocessing] Started Column Dropping
+[2022-03-29 02:44:15,349: INFO: preprocessing] Succesfully dropped columns
+[2022-03-29 02:44:15,349: INFO: preprocessing] Started encoding features
+[2022-03-29 02:44:32,086: INFO: preprocessing] Started Column Dropping
+[2022-03-29 02:44:33,454: INFO: preprocessing] Succesfully dropped columns
+[2022-03-29 02:44:33,455: INFO: preprocessing] Started Scaling of Numeric Columns
+[2022-03-29 02:44:34,834: INFO: preprocessing] Finished Scaling of Numeric Columns
+[2022-03-29 02:44:34,885: INFO: preprocessing] Starting train test split of data
+[2022-03-29 02:44:38,981: INFO: preprocessing] starting upsampling of data
+[2022-03-29 02:44:49,226: INFO: clustering] Finding Optimal cluster number
+[2022-03-29 02:45:16,811: INFO: clustering] Finished creating Cluster 1
+[2022-03-29 02:46:36,400: INFO: clustering] Finished creating Cluster 2
+[2022-03-29 02:48:09,778: INFO: clustering] Finished creating Cluster 3
+[2022-03-29 02:50:14,739: INFO: clustering] Finished creating Cluster 4
+[2022-03-29 02:52:20,785: INFO: clustering] Finished creating Cluster 5
+[2022-03-29 02:55:11,464: INFO: clustering] Finished creating Cluster 6
+[2022-03-29 02:58:04,392: INFO: clustering] Finished creating Cluster 7
+[2022-03-29 03:01:48,314: INFO: clustering] Finished creating Cluster 8
+[2022-03-29 03:05:15,734: INFO: clustering] Finished creating Cluster 9
+[2022-03-29 03:08:41,594: INFO: clustering] Finished creating Cluster 10
+[2022-03-29 03:08:41,659: INFO: clustering] Started Tagging of the clusters to dataframe
+[2022-03-29 03:10:18,759: INFO: clustering] Generate elbow graph for pre-defined clusters
+[2022-03-29 03:10:21,826: INFO: models] Started Training RandomForest Model on Cluster 0
+[2022-03-29 08:15:43,429: INFO: models] Finished Training RandomForest Model on Cluster 0
+[2022-03-29 08:17:30,049: INFO: models] Started Training XGboost Model on Cluster 0
+[2022-03-29 08:42:58,574: INFO: models] Finished Training XGboost Model on Cluster 0
+[2022-03-29 08:43:19,434: INFO: models] Started Training RandomForest Model on Cluster 1
+[2022-03-29 14:15:04,158: INFO: models] Finished Training RandomForest Model on Cluster 1
+[2022-03-29 14:16:54,402: INFO: models] Started Training XGboost Model on Cluster 1
+[2022-03-29 14:49:20,782: INFO: models] Finished Training XGboost Model on Cluster 1
+[2022-03-29 14:49:43,884: INFO: models] Started Training RandomForest Model on Cluster 2
+[2022-03-29 16:30:38,612: INFO: models] Finished Training RandomForest Model on Cluster 2
+[2022-03-29 16:31:05,726: INFO: models] Started Training XGboost Model on Cluster 2
+[2022-03-29 16:45:15,111: INFO: models] Finished Training XGboost Model on Cluster 2
+[2022-03-29 16:45:17,743: INFO: bestmodel] started storing best models for each clusters

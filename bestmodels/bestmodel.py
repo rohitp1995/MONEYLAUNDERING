@@ -4,15 +4,15 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(CURRENT_DIR))
 import pandas as pd
 from src.utils.clustering import Cluster
-import argparse 
 from src.utils.models import Trainmodel
+from evaluation.evalmetrics import Evaluation
 import pickle 
 from src.utils.common import read_config
 from log.logger import Logger
 from sklearn.metrics import roc_auc_score,f1_score,accuracy_score
 import json
 
-class getmodel:
+class Getmodel:
 
     def __init__(self, data, config_path):
 
@@ -29,78 +29,65 @@ class getmodel:
             self.logger.info('started storing best models for each clusters')
             
             with open('models/kmeans_model.pkl', 'rb') as f:
-                self.k = pickle.load(f)
+                k = pickle.load(f)
 
-            self.val_clusters = self.k.predict(self.data.drop(target, axis = 1))
-            self.data['cluster'] = self.val_clusters
-            self.unique_cluster = len(self.data['cluster'].unique())
+            val_clusters = k.predict(self.data.drop(target, axis = 1))
+            self.data['cluster'] = val_clusters
+            unique_cluster = len(self.data['cluster'].unique())
 
-            for cluster in range(0, self.unique_cluster):
+            for cluster in range(0, unique_cluster):
 
-                self.cluster_val_x =  self.data[self.data['cluster'] == cluster].drop(['cluster','target'], axis = 1)
-                self.cluster_val_y = self.data[self.data['cluster'] == cluster]['target']
+                cluster_val_x =  self.data[self.data['cluster'] == cluster].drop(['cluster','target'], axis = 1)
+                cluster_val_y =  self.data[self.data['cluster'] == cluster]['target']
                 
-                self.model_dir =  self.config['directory']['model_dir']
+                model_dir =  self.config['directory']['model_dir']
                 
-                for filename in os.scandir(self.model_dir):
+                for filename in os.scandir(model_dir):
                     
                     if str(cluster) in filename.path:
 
                         with open(str(filename.path), 'rb') as m:
-                            self.model = pickle.load(m)
+                            model = pickle.load(m)
+                    
     
                         if 'rf' in filename.path:
                 
-                            self.prediction = self.model.predict(self.cluster_val_x)
-                            self.rf_score = f1_score(self.cluster_val_y, self.prediction)
+                            prediction = model.predict(cluster_val_x)
+                            rf_score = f1_score(cluster_val_y, prediction)
+                            evaldata = Evaluation(cluster_val_y, prediction, self.config_path)
+                            evaldata.saveconfusionmatrix(cluster, 'rf')
+                            evaldata.save_classification_report(cluster, 'rf')
                         
                         elif 'xgb' in filename.path:
-                            self.prediction = self.model.predict(self.cluster_val_x)
-                            self.xgb_score = f1_score(self.cluster_val_y, self.prediction)
+                            
+                            prediction = model.predict(cluster_val_x)
+                            xgb_score = f1_score(cluster_val_y, prediction)
+                            evaldata = Evaluation(cluster_val_y, prediction, self.config_path)
+                            evaldata.saveconfusionmatrix(cluster, 'xgb')
+                            evaldata.save_classification_report(cluster, 'xgb')
                         
                         else:
-                            self.prediction = self.model.predict(self.cluster_val_x)
-                            self.catb_score = f1_score(self.cluster_val_y, self.prediction)
 
+                            prediction = model.predict(cluster_val_x)
+                            catb_score = f1_score(cluster_val_y, prediction)
+                            evaldata = Evaluation(cluster_val_y, prediction, self.config_path)
+                            evaldata.saveconfusionmatrix(cluster, 'cb')
+                            evaldata.save_classification_report(cluster, 'cb')
 
-                if (self.rf_score >= self.xgb_score):
+                if (rf_score >= xgb_score):
 
-                    self.bestmodel_dict = {'cluster': cluster,
-                                        'model': f'rf_{cluster}_model.pkl'}
+                    rf_bestmodel = f'rf_{cluster}_model.pkl'
 
-                    with open("bestmodels/bestmodels.json", "a") as outfile:
-                        json.dump(self.bestmodel_dict, outfile)
+                    with open("bestmodels/bestmodels.txt", "a") as outfile:
+                        outfile.write(rf_bestmodel + '\n')
 
                 else:
-                    self.bestmodel_dict = {'cluster': cluster,
-                                        'model': f'xgb_{cluster}_model.pkl'}
+                    xgb_bestmodel =  f'xgb_{cluster}_model.pkl'
 
-                    with open("bestmodels/bestmodels.json", "a") as outfile:
-                        json.dump(self.bestmodel_dict, outfile)
-
-                # if (self.rf_score > self.xgb_score) and (self.rf_score > self.catb_score):
-
-                #     self.bestmodel_dict = {'cluster': cluster,
-                #                         'model': f'rf_{cluster}_model.pkl'}
-
-                    # with open("bestmodels.json", "a") as outfile:
-                    #    json.dump(self.bestmodel_dict, outfile)
-
-                # elif (self.xgb_score > self.rf_score) and (self.xgb_score > self.catb_score):
-
-                #     self.bestmodel_dict = {'cluster': cluster,
-                #                             'model': f'xgb_{cluster}_model.pkl'}
-
-                #     with open("bestmodels.json", "a") as outfile:
-                #         json.dump(self.bestmodel_dict, outfile)
-
-                # else:
-                #     self.bestmodel_dict = {'cluster': cluster,
-                #                             'model': f'cb_{cluster}_model.pkl'}
-
-                #     with open("bestmodels.json", "a") as outfile:
-                #         json.dump(self.bestmodel_dict, outfile)
+                    with open("bestmodels/bestmodels.txt", "a") as outfile:
+                         outfile.write(xgb_bestmodel + '\n')
                     
         except Exception as e:
-            self.logger.error('Saving of best Models for cluster was unsuccessful', + str(e))            
+            self.logger.error('Saving of best Models for cluster was unsuccessful ', + str(e))   
+            sys.exit(1)         
             

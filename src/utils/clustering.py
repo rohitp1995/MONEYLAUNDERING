@@ -27,14 +27,15 @@ class Cluster:
         try:
 
             os.makedirs(self.config['directory']['model_dir'], exist_ok = True)
-            self.model_name = f'kmeans_{self.config["names"]["model_name"]}'
-            self.model_dir = os.path.join(self.config['directory']['model_dir'], self.model_name)
+            model_name = f'kmeans_{self.config["names"]["model_name"]}'
+            model_dir = os.path.join(self.config['directory']['model_dir'], model_name)
             
-            with open(self.model_dir, 'wb') as f:
+            with open(model_dir, 'wb') as f:
                 pickle.dump(model, f, protocol=pickle.HIGHEST_PROTOCOL)
         
         except Exception as e:
-            self.logger.error('Error While saving the cluster'+ str(e))
+            self.logger.error('Error While saving the cluster: '+ str(e))
+            sys.exit(1)
             
     def getclusternumber(self, target):
 
@@ -44,17 +45,18 @@ class Cluster:
             self.logger.info('Finding Optimal cluster number')
             
             for i in range(1, self.range+1):
-                self.k = KMeans(n_clusters=i)
-                self.k.fit(self.data.drop(target,1))
+                k = KMeans(n_clusters=i)
+                k.fit(self.data.drop(target,1))
                 self.logger.info(f'Finished creating Cluster {i}')
-                self.wcss.append(self.k.inertia_)
+                self.wcss.append(k.inertia_)
 
-            self.kn = KneeLocator(range(1, self.range+1), self.wcss, curve='convex', direction='decreasing')
+            kn = KneeLocator(range(1, self.range+1), self.wcss, curve='convex', direction='decreasing')
 
-            return self.kn.knee
+            return kn.knee
 
         except Exception as e:
-            self.logger.error('Error While finding cluster numbers'+ str(e))
+            self.logger.error('Error While finding cluster numbers: '+ str(e))
+            sys.exit(1)
 
     def saveelbowgraph(self):
         
@@ -62,41 +64,44 @@ class Cluster:
             self.logger.info('Generate elbow graph for pre-defined clusters')
 
             os.makedirs(self.config['directory']['report_dir'], exist_ok = True)
-            self.graph_name = f'kmeans_Elbow_{self.config["names"]["graph_name"]}'
-            self.graph_dir = os.path.join(self.config['directory']['report_dir'], self.graph_name)
+            graph_name = f'kmeans_Elbow_{self.config["names"]["graph_name"]}'
+            graph_dir = os.path.join(self.config['directory']['report_dir'], graph_name)
 
             plt.plot(range(1, self.range+1), self.wcss)
-            plt.savefig(self.graph_dir)
+            plt.savefig(graph_dir)
 
         except Exception as e:
-            self.logger.error('Error While saving elbow graph'+ str(e))
+            self.logger.error('Error While saving elbow graph: '+ str(e))
+            sys.exit(1)
 
 
     def tagclusternumbers(self, cluster, target):
         
         try:
             self.logger.info('Started Tagging of the clusters to dataframe')
-            self.km = KMeans(n_clusters = cluster, random_state = 10)
+            km = KMeans(n_clusters = cluster, random_state = 10)
             
-            self.km.fit(self.data.drop(target,1))
-            self.save_cluster(self.km)
+            km.fit(self.data.drop(target,1))
+            self.save_cluster(km)
             self.saveelbowgraph()
 
-            self.data['cluster'] =  self.km.labels_
+            self.data['cluster'] =  km.labels_
 
         except Exception as e:
-            self.logger.error('Error While tagging cluster numbers'+ str(e))
+            self.logger.error('Error While tagging cluster numbers: '+ str(e))
+            sys.exit(1)
 
 
     def predictcluster(self, x_test, target):
         
         try:
             self.logger.info('Predicting cluster for test data')    
-            self.prediction = self.km.predict(x_test.drop(target,1))
-            x_test['cluster'] =  self.prediction
+            prediction = km.predict(x_test.drop(target,1))
+            x_test['cluster'] =  prediction
 
         except Exception as e:
-            self.logger.error('Error While predicting cluster numbers'+ str(e))
+            self.logger.error('Error While predicting cluster numbers: '+ str(e))
+            sys.exit(1)
 
     
 

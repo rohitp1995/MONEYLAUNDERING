@@ -1,4 +1,4 @@
-{	"NumberofColumns" : 9,
+{	"NumberofColumns" : 10,
     "Extension": ".csv",
 	"ColName": {
 		"step" : "int64",
@@ -9,6 +9,7 @@
 		"newbalanceOrig": "float64",
 		"nameDest": "object",
 		"oldbalanceDest": "float64",
-		"newbalanceDest": "float64"
+		"newbalanceDest": "float64",
+		"isFlaggedFraud": "int64"
 	}
 }

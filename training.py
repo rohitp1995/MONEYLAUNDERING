@@ -9,79 +9,78 @@ from FeatureGeneration.generateFeatures import GenerateNewFeatures
 from src.utils.clustering import Cluster
 import argparse 
 from src.utils.models import Trainmodel
-from bestmodels.bestmodel import getmodel
+from bestmodels.bestmodel import Getmodel
+from log.logger import Logger
 from DataValidation.TrainingDataValidation import ValidateFile
 import pickle
 
-def Training(config_path):
-   
-   validator = ValidateFile('data_ingestion/Dataset.csv')
-   extension_val = validator.validate_extension()
-   colsize_val = validator.validate_colsize()
-   dtypes_val = validator.validate_coldatatypes()
-   
-   if all([extension_val, colsize_val, dtypes_val]):
 
-      DataGetter = TrainingDataGetter('data_ingestion/Dataset.csv')
-      data = DataGetter.get_data()
+class Training:
 
-      num_cols = ['amount', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest',
-                  'newbalanceDest']
+   def __init__(self, file_data, config_path):
 
-      MONEY_OUT = ['PAYMENT','TRANSFER','CASH_OUT','DEBIT']
-      MONEY_IN = ['CASH_IN']
+      self.file_data = file_data
+      self.log_obj = Logger('Generatedlogs')
+      self.logger = self.log_obj.logging()
+      self.validator = ValidateFile(self.file_data)
+      self.config_path = config_path
+      self.loader = TrainingDataGetter(self.file_data, self.config_path)
 
-      ## creating new features
-      featuresgen = GenerateNewFeatures(data)
-      featuresgen.make_date_columns('step')
-      featuresgen.make_diff_columns(MONEY_IN, MONEY_OUT)
-
-      ## Preprocessing data
-      preprocess = Preprocess(data)
-      preprocess.drop_columns(['isFlaggedFraud', 'step'])     
-      data = preprocess.encode_categorical_columns()
-      preprocess.drop_columns(['nameOrig','nameDest'])      
-      data = preprocess.scalenumericvalues(num_cols)
-
-      ## splitting and sampling
-      X_train, X_val, y_train, y_val = preprocess.split_data(0.3, 'isFraud')
-      X_train_resampled, y_train_resampled = preprocess.resampledata(0.5, X_train, y_train)
+   def train(self):
       
-      X_train_resampled['target'] = y_train_resampled
-      X_val['target'] = y_val
+      if self.loader.validate_before_load():
+         #self.loader.load_data_in_db()
+         data = self.loader.get_data()         
 
-      # clustering the sampled data
-      cluster_obj = Cluster(X_train_resampled, 10, config_path)
-      cluster_numbers = cluster_obj.getclusternumber('target')
-      cluster_obj.tagclusternumbers(cluster_numbers, 'target')
+         num_cols = ['amount', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest',
+                     'newbalanceDest']
 
-      # predicting cluster for test data
-      cluster_obj.predictcluster(X_val, 'target')
+         MONEY_OUT = ['PAYMENT','TRANSFER','CASH_OUT','DEBIT']
+         MONEY_IN = ['CASH_IN']
 
-      # with open('models/kmeans_model.pkl', 'rb') as f:
-      #    k = pickle.load(f)
-      #    clusters = k.predict(X_train_resampled.drop('target',1))
-      #    X_train_resampled['cluster'] = clusters
+         ## creating new features
+         featuresgen = GenerateNewFeatures(data)
+         featuresgen.make_date_columns('step')
+         featuresgen.make_diff_columns(MONEY_IN, MONEY_OUT)
 
-      # cluster_numbers = 4
-      for cluster in range(0, cluster_numbers):
+         ## Preprocessing data
+         preprocess = Preprocess(data)
+         preprocess.drop_columns(['isFlaggedFraud', 'step'])     
+         data = preprocess.encode_categorical_columns()
+         preprocess.drop_columns(['nameOrig','nameDest'])      
+         data = preprocess.scalenumericvalues(num_cols)
+
+         ## splitting and sampling
+         X_train, X_val, y_train, y_val = preprocess.split_data(0.3, 'isFraud')
+         X_train_resampled, y_train_resampled = preprocess.resampledata(0.5, X_train, y_train)
          
-         cluster_train_x = X_train_resampled[X_train_resampled['cluster'] == cluster].drop(['cluster','target'], axis = 1)
-         cluster_train_y = X_train_resampled[X_train_resampled['cluster'] == cluster]['target']
+         X_train_resampled['target'] = y_train_resampled
+         X_val['target'] = y_val
 
-         model_obj = Trainmodel(10, cluster, cluster_train_x, cluster_train_y, config_path)
-         rf = model_obj.RandomForestClassifierTrain()
-         xgb = model_obj.XGBoostClassifierTrain()
+         # clustering the sampled data
+         cluster_obj = Cluster(X_train_resampled, 10, self.config_path)
+         cluster_numbers = cluster_obj.getclusternumber('target')
+         cluster_obj.tagclusternumbers(cluster_numbers, 'target')
+         
+         for cluster in range(0, cluster_numbers):
+            
+            cluster_train_x = X_train_resampled[X_train_resampled['cluster'] == cluster].drop(['cluster','target'], axis = 1)
+            cluster_train_y = X_train_resampled[X_train_resampled['cluster'] == cluster]['target']
 
-      bestmodel = getmodel(X_val, config_path)
-      bestmodel.storebestmodel('target')
+            model_obj = Trainmodel(10, cluster, cluster_train_x, cluster_train_y, self.config_path)
+            rf = model_obj.RandomForestClassifierTrain()
+            xgb = model_obj.XGBoostClassifierTrain()
 
+         bestmodel = Getmodel(X_val, self.config_path)
+         bestmodel.storebestmodel('target')
+
+      
 if __name__ == '__main__':
 
     args = argparse.ArgumentParser()
     args.add_argument("--config", "-c", default="config.yaml")
     parsed_args = args.parse_args()
-    Training(config_path=parsed_args.config)
-    
-    
+    Train = Training('data_ingestion/Dataset.csv', config_path=parsed_args.config)
+    Train.train()
+
 

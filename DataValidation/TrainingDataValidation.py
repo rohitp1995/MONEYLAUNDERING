@@ -27,7 +27,8 @@ class ValidateFile:
             else:
                 return False
         except Exception as e:
-            self.logger.error('There was some error while validating file extension'+ str(e))
+            self.logger.error('There was some error while validating file extension: '+ str(e))
+            sys.exit(1)
             
 
     def validate_colsize(self):
@@ -40,7 +41,8 @@ class ValidateFile:
                 else:
                     return False
         except Exception as e:
-            self.logger.error('There was error while validating column size'+ str(e))
+            self.logger.error('There was error while validating column size: '+ str(e))
+            sys.exit(1)
 
     def validate_coldatatypes(self):
 
@@ -64,7 +66,24 @@ class ValidateFile:
                 return False
 
         except Exception as e:
-            self.logger.error('There is error while validation column datatypes'+str(e))
+            self.logger.error('There is error while validation column datatypes: '+ str(e))
+            sys.exit(1)
+
+    
+    def getcolumnlist(self):
+
+        try:
+            self.logger.info('getting column names to store in dataframe')
+            col_list = list(trainingvalidation['ColName'].keys())
+            return col_list
+
+        except Exception as e:
+            self.logger.error('There is error while getting column list: ' + str(e))
+            sys.exit(1)
+
+
+
+    
 
             
 

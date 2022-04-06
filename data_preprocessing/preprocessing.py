@@ -25,7 +25,8 @@ class Preprocess:
             self.logger.info('Succesfully dropped columns')
 
         except Exception as e:
-            self.logger.error('Error while dropping columns'+ str(e))
+            self.logger.error('Error while dropping columns: '+ str(e))
+            sys.exit(1)
 
 
     def encode_categorical_columns(self):
@@ -43,70 +44,75 @@ class Preprocess:
 
            self.logger.info('End encoding features')
         except Exception as e:
-            self.logger.error('Encoding Features was unsuccessful'+ str(e))
+            self.logger.error('Encoding Features was unsuccessful: '+ str(e))
+            sys.exit(1)
 
 
     def Nullcheck(self):
 
-        self.data_cnt = self.data.shape[0]
-        self.cols_with_missing_values=[]
+        data_cnt = self.data.shape[0]
+        cols_with_missing_values=[]
         
         try:
             self.logger.info('Checking for null values')
             null_dict = self.data.isnull().sum().to_dict()
             for col, val in null_dict.items():
                 if val > 0:
-                        self.cols_with_missing_values.append([col,(val/self.data_cnt)*100])
-                        self.null_col_df = pd.DataFrame(self.cols_with_missing_values, columns=['columns','percentage'])
-                        self.null_col_df.to_excel('data_preprocessing/Null_value_report.xlsx', index = False)
-                        self.logger.info('Null values report generated')
+                        cols_with_missing_values.append([col,(val/self.data_cnt)*100])
+                        null_col_df = pd.DataFrame(cols_with_missing_values, columns=['columns','percentage'])
+                        null_col_df.to_excel('data_preprocessing/Null_value_report.xlsx', index = False)
+                        logger.info('Null values report generated')
 
         except Exception as e:
-            self.logger.error('Error while checking and storing Null Values'+ str(e))
+            self.logger.error('Error while checking and storing Null Values: '+ str(e))
+            sys.exit(1)
 
 
     def seperate_label_columns(self, cluster_data, label_col_name):
 
         try:
             self.logger.info('Started Seperation of independent and dependent columns')
-            self.X_data = cluster_data.drop(label_col_name, axis = 1)
-            self.y_data = cluster_data[label_col_name]
+            X_data = cluster_data.drop(label_col_name, axis = 1)
+            y_data = cluster_data[label_col_name]
             self.logger.info('Seperation of independent columns and dependent columns completed')
 
-            return self.X_data, self.y_data
+            return X_data, y_data
         
         except Exception as e:
-            self.logger.error('Error while seperating label values'+ str(e))
+            self.logger.error('Error while seperating label values: '+ str(e))
+            sys.exit(1)
 
     def split_data(self, test_size, target_col):
 
         try:
             
             self.logger.info('Starting train test split of data')
-            self.X = self.data.drop(target_col, 1)
-            self.y = self.data[target_col]
-            self.X_train, self.X_val, self.y_train, self.y_val = train_test_split(self.X, self.y, test_size = test_size, random_state = 42, stratify = self.y)
+            X = self.data.drop(target_col, 1)
+            y = self.data[target_col]
+            X_train, X_val, y_train, y_val = train_test_split(X, y, test_size = test_size, random_state = 42, stratify = y)
 
-            return self.X_train, self.X_val, self.y_train, self.y_val      
+            return X_train, X_val, y_train, y_val      
 
         except Exception as e:
-            self.logger.error('Error while performing train test split'+ str(e))
+            self.logger.error('Error while performing train test split: '+ str(e))
+            sys.exit(1)
 
 
     def scalenumericvalues(self, num_columns):
 
         try:
             self.logger.info('Started Scaling of Numeric Columns')
-            self.sc = StandardScaler()
-            self.scaled_data = pd.DataFrame(self.sc.fit_transform(self.data[num_columns]), columns=num_columns)
+            sc = StandardScaler()
+            scaled_data = pd.DataFrame(sc.fit_transform(self.data[num_columns]), columns=num_columns)
             self.data.drop(num_columns, axis = 1, inplace=True)
-            self.data = pd.concat([self.scaled_data, self.data], axis = 1)
+            self.data = pd.concat([scaled_data, self.data], axis = 1)
             self.logger.info('Finished Scaling of Numeric Columns')
 
             return self.data
         
         except Exception as e:
-            self.logger.error('Scaling of Numeric Values Unsuccessful'+ str(e))
+            self.logger.error('Scaling of Numeric Values Unsuccessful: '+ str(e))
+            sys.exit(1)
 
 
     def resampledata(self, ratio, X_train, y_train):
@@ -114,14 +120,15 @@ class Preprocess:
         try:
 
             self.logger.info('starting upsampling of data')
-            self.sm = SMOTE(random_state = 0 , n_jobs= -1, ratio = ratio)
-            self.X_train_resampled, self.y_train_resampled = self.sm.fit_sample(X_train, y_train)
-            self.X_train_resampled =  pd.DataFrame(self.X_train_resampled)
+            sm = SMOTE(random_state = 0 , n_jobs= -1, ratio = ratio)
+            X_train_resampled, y_train_resampled = sm.fit_sample(X_train, y_train)
+            X_train_resampled =  pd.DataFrame(X_train_resampled)
             
-            return  self.X_train_resampled, self.y_train_resampled
+            return  X_train_resampled, y_train_resampled
 
         except Exception as e:
-            self.logger.error('resampling of data was unsuccessful'+ str(e))
+            self.logger.error('resampling of data was unsuccessful: '+ str(e))
+            sys.exit(1)
 
 
 

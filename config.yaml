@@ -5,6 +5,12 @@ directory:
 names:
   model_name: model.pkl
   graph_name: graph.png
+  report_name: classification_report.xlsx
+
+database:
+  db_name: finance1
+  username: Rohit
+  pwd: Mongodb
 
 randomforestparams:
   n_estimators: [10,15,18,20]

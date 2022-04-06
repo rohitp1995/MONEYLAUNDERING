@@ -22,7 +22,8 @@ class GenerateNewFeatures:
             self.data['hour'] = self.data[column]
 
         except Exception as e:
-            self.logger.error('Feature Creation Unsucessful'+ str(e))
+            self.logger.error('Feature Creation Unsucessful: '+ str(e))
+            sys.exit(1)
 
     
     def make_diff_columns(self, MONEY_IN, MONEY_OUT):
@@ -37,5 +38,6 @@ class GenerateNewFeatures:
             self.data["destdiffcheck"] = np.where((self.data['type'].isin(MONEY_IN)) & (self.data["newbalanceDest"] - self.data["newbalanceDest"] == self.data['amount']), 1,self.data["destdiffcheck"])
 
         except Exception as e:
-            self.logger.error('Diff Feature Creation Unsucessful'+ str(e))
+            self.logger.error('Diff Feature Creation Unsucessful: '+ str(e))
+            sys.exit(1)
             
