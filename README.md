@@ -37,6 +37,9 @@ Dataset was taken from https://www.kaggle.com/datasets/ealaxi/paysim1
 ## Application Home Page
 ![image](https://user-images.githubusercontent.com/29440153/162224660-3335de92-902f-456e-94ba-a91f71c05216.png)
 
+## AWS EC2(Deployment) link
+http://ec2-3-85-30-172.compute-1.amazonaws.com:8501/
+
 ## Contributors
  1) https://github.com/rohitp1995
  
